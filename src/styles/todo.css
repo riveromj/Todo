@@ -1,0 +1,10 @@
+.delete{
+    float: right;
+}
+.list-group-item{
+    padding: 1%;
+    width: 100%;
+}
+li{
+    list-style-type: none;
+}
