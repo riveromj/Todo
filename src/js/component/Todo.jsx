@@ -6,7 +6,9 @@ function Todo(props) {
 	return (
 		<li className="list-group-item">
 			{props.id + 1}. {props.todo}{" "}
-			<span className="delete" onClick={() => props.deleteTodo(props.id)}>
+			<span
+				className="delete pointer"
+				onClick={() => props.deleteTodo(props.id)}>
 				{" "}
 				X{" "}
 			</span>

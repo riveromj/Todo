@@ -12,19 +12,60 @@ function Home() {
 		console.log("borrar");
 	};
 
+	///////API FECHT
+	useEffect(() => {
+		const res = fetch(
+			"https://assets.breatheco.de/apis/fake/todos/user/riveromj"
+		);
+		res.then(response => response.json())
+			.then(data => setListTodo(data))
+			.catch(err => console.log(err));
+	}, []);
+
+	//////////
+	useEffect(() => {
+		fetch("https://assets.breatheco.de/apis/fake/todos/user/riveromj", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(listTodo)
+		})
+			.then(response => response.json())
+			.then(data => {
+				console.log("Success:", data);
+			})
+			.catch(error => {
+				console.error("Error:", error);
+			});
+	}, []);
+
+	useEffect(
+		() => {
+			fetch("https://assets.breatheco.de/apis/fake/todos/user/riveromj", {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify(listTodo)
+			})
+				.then(response => response.json())
+				.then(data => {
+					console.log("UPDATE:", data);
+				})
+				.catch(error => {
+					console.error("Error:", error);
+				});
+		},
+		[listTodo]
+	);
+
 	const handelKeyDow = e => {
 		if (e.keyCode == 13 && event.target.value != "") {
-			setListTodo([...listTodo, todo]);
+			setListTodo([...listTodo, { label: todo, done: false }]);
 			setTodo("");
 		}
 	};
-
-	/*useEffect(
-		() => {
-			console.log("CICLO DE VIDA");
-		},
-		[listTodo]
-	);*/
 
 	return (
 		<div className="card container">
@@ -43,14 +84,14 @@ function Home() {
 					return (
 						<Todo
 							key={index}
-							todo={todo}
+							todo={todo.label}
 							id={index}
 							deleteTodo={deleteTodo}
 						/>
 					);
 				})}
 			</ul>
-			<div className="card-footer">{listTodo.length} Item</div>
+			<div className="card-footer">{listTodo.length} Items</div>
 		</div>
 	);
 }

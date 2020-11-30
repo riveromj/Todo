@@ -1,6 +1,8 @@
 .delete{
     float: right;
+    pointer-events: auto;
 }
+.pointer {cursor: pointer;}
 .list-group-item{
     padding: 1%;
     width: 100%;
