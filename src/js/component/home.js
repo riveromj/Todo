@@ -69,6 +69,9 @@ function Home() {
 
 	return (
 		<div className="card container">
+			<header className="header">
+				<i className="fab fa-react react" />
+			</header>
 			<h1>TO dO LIST</h1>
 			<input
 				className="todo"
