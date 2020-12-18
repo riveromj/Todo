@@ -61,9 +61,13 @@ function Home() {
 	);
 
 	const handelKeyDow = e => {
-		if (e.keyCode == 13 && event.target.value != "") {
-			setListTodo([...listTodo, { label: todo, done: false }]);
-			setTodo("");
+		//validacion de campo vacio
+		if (event.target.value.trim() != "") {
+			//validacion de tecla enter
+			if (e.keyCode == 13) {
+				setListTodo([...listTodo, { label: todo, done: false }]);
+				setTodo("");
+			}
 		}
 	};
 
